@@ -19,7 +19,7 @@ public class PersonAction extends ActionSupport {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private int id;
+	private String id;
 	
 	private String username;
 	
@@ -27,11 +27,11 @@ public class PersonAction extends ActionSupport {
 	
 	private int age;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -104,6 +104,22 @@ public class PersonAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		request.setAttribute("person", person);
 		
+		return SUCCESS;
+	}
+	
+	public String updatePerson() throws Exception {
+		PersonService service = new PersonServiceImpl();
+		Person person = service.getSinglePersonById(id);
+		
+		person.setPassword(password);
+		person.setAge(age);
+		
+		service.updatePerson(person);
+		
+		List<Person> list = service.listAllPersons();
+		
+		HttpServletRequest request = ServletActionContext.getRequest();
+		request.setAttribute("list", list);
 		return SUCCESS;
 	}
 }

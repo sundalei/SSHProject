@@ -53,7 +53,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public void removePerson(int id) {
+	public void removePerson(String id) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = session.beginTransaction();
 		
@@ -72,7 +72,7 @@ public class PersonDAOImpl implements PersonDAO {
 	}
 
 	@Override
-	public Person getSinglePerson(int id) {
+	public Person getSinglePerson(String id) {
 		Session session = HibernateUtil.openSession();
 		Transaction tx = session.beginTransaction();
 		Person person = null;
@@ -91,4 +91,20 @@ public class PersonDAOImpl implements PersonDAO {
 		return person;
 	}
 
+	@Override
+	public void updatePerson(Person person) {
+		Session session = HibernateUtil.openSession();
+		Transaction tx = session.beginTransaction();
+		
+		try {
+			session.update(person);
+			tx.commit();
+		} catch(Exception ex) {
+			if(null != tx) {
+				tx.rollback();
+			}
+		} finally {
+			HibernateUtil.close(session);
+		}
+	}
 }

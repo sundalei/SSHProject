@@ -21,14 +21,20 @@ public class PersonServiceImpl implements PersonService {
 	}
 
 	@Override
-	public void deletePerson(int id) {
+	public void deletePerson(String id) {
 		PersonDAO dao = new PersonDAOImpl();
 		dao.removePerson(id);
 	}
 
 	@Override
-	public Person getSinglePersonById(int id) {
+	public Person getSinglePersonById(String id) {
 		PersonDAO dao = new PersonDAOImpl();
 		return dao.getSinglePerson(id);
+	}
+
+	@Override
+	public void updatePerson(Person person) {
+		PersonDAO dao = new PersonDAOImpl();
+		dao.updatePerson(person);
 	}
 }

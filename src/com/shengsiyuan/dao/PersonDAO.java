@@ -10,7 +10,9 @@ public interface PersonDAO {
 	
 	public List<Person> listAllPersons();
 	
-	public void removePerson(int id);
+	public void removePerson(String id);
 	
-	public Person getSinglePerson(int id);
+	public Person getSinglePerson(String id);
+	
+	public void updatePerson(Person person);
 }

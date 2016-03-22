@@ -3,7 +3,7 @@ package com.shengsiyuan.model;
 import java.util.Date;
 
 public class Person {
-	private int id;
+	private String id;
 	
 	private String username;
 	
@@ -13,11 +13,11 @@ public class Person {
 	
 	private Date registerDate;
 
-	public int getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
