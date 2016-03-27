@@ -41,6 +41,7 @@
 
 	<table width="80%" align="center" border="1">
 		<tr>
+			<th>order</th>
 			<th>username</th>
 			<th>password</th>
 			<th>age</th>
@@ -49,11 +50,12 @@
 			<th>delete</th>
 		</tr>
 
-		<s:iterator value="#request.list" var="person">
+		<s:iterator value="#request.list" var="person" status="st">
 
 			<tr>
+				<td><s:property value="#st.index + 1" /></td>
 				<td><s:a href="getSinglePerson.action?id=%{#person.id}"><s:property value="username"></s:property></s:a></td>
-				<td><s:property value="password" /></td>
+				<td><s:property value="%{password}" /></td>
 				<td><s:property value="age" /></td>
 				<td><s:property value="registerDate" /></td>
 				<td><s:a href="updatePPerson.action?id=%{#person.id}">update</s:a></td>
